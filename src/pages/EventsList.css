@@ -1,62 +1,137 @@
+/* ===== Mobile-first base styles (375px and up) ===== */
+
 .events-page {
-  padding: 40px;
-  max-width: 1400px;
+  padding: 1rem;               /* 16px — compact on small screens */
+  max-width: 87.5rem;          /* 1400px */
   margin: 0 auto;
 }
 
 .loading {
   text-align: center;
-  padding: 100px 0;
-  font-size: 24px;
+  padding: 6rem 0;              /* 96px */
+  font-size: 1.5rem;            /* 24px */
   color: #666;
 }
 
 .page-header {
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;        /* 24px */
 }
 
 .page-header h1 {
-  font-size: 42px;
+  font-size: 2rem;              /* 32px — smaller on mobile, grows at desktop */
   color: #2c3e50;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;        /* 8px */
 }
 
 .page-header p {
-  font-size: 18px;
+  font-size: 1rem;              /* 16px */
   color: #666;
 }
 
+/* Everything stacks vertically on mobile */
 .events-container {
   display: flex;
-  gap: 40px;
+  flex-direction: column;        /* sidebar above grid on small screens */
+  gap: 1.5rem;                  /* 24px */
 }
 
 .sidebar {
-  width: 280px;
+  width: 100%;                  /* full width on small screens */
   flex-shrink: 0;
 }
 
 .filter-section {
   background-color: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;              /* 24px */
+  border-radius: 0.5rem;        /* 8px */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .filter-section h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 1.5rem;            /* 24px */
+  margin-bottom: 0.75rem;       /* 12px */
   color: #2c3e50;
 }
 
 .filter-note {
-  font-size: 14px;
+  font-size: 0.875rem;          /* 14px */
   color: #999;
 }
 
+/* Single column of cards on mobile */
 .events-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  --grid-gap: 1.5rem;           /* 24px */
+  display: flex;
+  flex-direction: column;        /* cards stack vertically */
+  gap: var(--grid-gap);
+}
+
+/* ===== Tablet breakpoint (768px and up) ===== */
+
+@media screen and (min-width: 768px) {
+  .events-page {
+    padding: 2rem;              /* 32px — more room on larger screens */
+  }
+
+  .page-header {
+    margin-bottom: 2rem;        /* 32px */
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;          /* 40px */
+  }
+
+  .events-container {
+    gap: 2rem;                  /* 32px */
+  }
+
+  /* Grid: 2 cards per row using flex-basis.
+     Sidebar stays stacked full-width above the grid. */
+  .events-grid {
+    --grid-gap: 1.75rem;        /* 28px */
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Half the row minus half the gap; no grow so an odd last card stays half width */
+  .events-grid > .event-card {
+    flex: 0 0 calc(50% - var(--grid-gap) / 2);
+  }
+}
+
+/* ===== Desktop breakpoint (1024px and up) ===== */
+
+@media screen and (min-width: 1024px) {
+  .events-page {
+    padding: 2.5rem;            /* 40px */
+  }
+
+  .page-header {
+    margin-bottom: 2.5rem;      /* 40px */
+  }
+
+  .page-header h1 {
+    font-size: 2.625rem;        /* 42px */
+  }
+
+  .page-header p {
+    font-size: 1.125rem;        /* 18px */
+  }
+
+  /* Sidebar and grid side-by-side */
+  .events-container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;                /* 40px */
+  }
+
+  .sidebar {
+    width: 17.5rem;             /* 280px fixed sidebar */
+  }
+
+  .events-grid {
+    --grid-gap: 2rem;           /* 32px */
+    flex: 1;                    /* grid uses remaining space */
+    min-width: 0;
+  }
 }

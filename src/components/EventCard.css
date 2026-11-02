@@ -1,41 +1,74 @@
+/* ===== Mobile-first base styles ===== */
+
 .event-card {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0.5rem;        /* 8px */
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
+/* aspect-ratio keeps the image proportionate at any width */
 .event-image {
   width: 100%;
-  height: 200px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  display: block;
 }
 
 .event-info {
-  padding: 20px;
+  padding: 1.25rem;             /* 20px */
 }
 
 .event-title {
-  font-size: 20px;
-  margin-bottom: 12px;
+  font-size: 1.25rem;           /* 20px */
+  margin-bottom: 0.75rem;       /* 12px */
   color: #2c3e50;
 }
 
 .event-date,
 .event-venue {
-  font-size: 14px;
+  font-size: 0.875rem;          /* 14px */
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;        /* 8px */
 }
 
+/* Full-width button on mobile for an easy touch target */
 .view-button {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;           /* 12px */
+  padding: 0.75rem 1.5rem;      /* 12px 24px */
+  min-height: 2.75rem;           /* 44px minimum touch target */
   background-color: #3498db;
   color: white;
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 0.25rem;        /* 4px */
+  font-size: 0.875rem;           /* 14px */
   font-weight: 600;
+}
+
+.view-button:hover {
+  background-color: #217db8;
+}
+
+/* ===== Tablet and up (768px) ===== */
+
+@media screen and (min-width: 768px) {
+  .event-info {
+    padding: 1.5rem;             /* 24px */
+  }
+
+  .event-title {
+    font-size: 1.375rem;         /* 22px */
+  }
+
+  /* Button back to inline sizing on larger screens */
+  .view-button {
+    width: auto;
+  }
 }
